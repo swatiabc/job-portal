@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Responsive car dealership details cards</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="companies.component.css"/>
+</head>
+<body>
+<section id="FormSection">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="d-flex form-area">
+               <div class="inside d-flex">
+                   <div class="form-group mr-md-3 mr-0 mb-md-0 mb-3">
+                       <input class="form-control" aria-label="" placeholder="Skills, company, tag" />
+                   </div>
+                   <div class="form-group mr-md-3 mr-0 mb-md-0 mb-3">
+                       <select class="form-control" aria-label="">
+                           <option *ngFor="let category of categories">{{category.name}}</option>
+                       </select>
+                   </div>
+                   <div class="form-group mr-md-3 mr-0 mb-md-0 mb-3">
+                       <select class="form-control" aria-label="">
+                           <option *ngFor="let location of locations">{{location.name}}</option>
+                       </select>
+                   </div>
+                   <div class="form-group mb-0">
+                       <button class="btn btn-search"><i class="fas fa-search"></i> Search</button>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="CardsSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-12 mb-3"  *ngFor="let tag of companyTags">
+                <a href="#">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                                <i class="fas fa-code fa-3x mb-3"></i>
+                                <h5>{{tag.name}}</h5>
+                                <p class="small mb-0">{{tag.numberOfJobs}} Jobs</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="ResultsSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h3>Latest Jobs</h3>
+            </div>
+            <div class="col-12">
+                <div class="card job-listings-item" *ngFor="let company of companies">
+                    <div class="card-body">
+                        <div class="row d-flex flex-md-row flex-column align-items-center">
+                            <div class="job-main-info col-lg-10">
+                                <div class="job-main-group d-flex align-items-center">
+                                    <div class="job-employer-logo mr-md-3 mr-0">
+                                        <img src="https://via.placeholder.com/52.png" alt="">
+                                    </div>
+                                    <div class="job-details-group ">
+                                        <div class="job-details">
+                                            <h3>{{company.name}}</h3>
+                                            <ul class="job-details-content">
+                                                <li><i class="fas fa-calendar"></i>{{company.jobType}}</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>{{company.locationType}}</li>
+                                                <li><i class="fas fa-dollar-sign"></i>{{company.salary}} / year</li>
+                                            </ul>
+                                        </div>
+                                        <div class="job-tags">
+                                            <a href="#" class="job-tag" *ngFor="let tag of company.tags"> 
+                                                {{tag}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="job-meta-info col-lg-2">
+                                <div class="job-posted-date">
+                                    <i class="far fa-clock mr-3"></i> {{company.updated_at}}
+                                </div>
+                                <a href="#" target="_blank" rel="nofollow noopener" class="btn"><i class="fas fa-file-signature"></i> Apply</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-5">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" aria-disabled="true">...</a></li>
+                            <li class="page-item"><a class="page-link" href="#">8</a></li>
+                            <li class="page-item"><a class="page-link" href="#">9</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
